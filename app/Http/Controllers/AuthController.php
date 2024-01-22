@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repository\UserRepositoryInterface;
 
@@ -23,7 +24,26 @@ class AuthController extends Controller
             return response()->json($response, 400);
         }
 
-        $result = $this->user->store($request->validated());
+        $file = $request->file('profile_picture');
+        $extension = $file->getClientOriginalExtension();
+
+
+        $uniqueId = Str::uuid()->toString();
+
+        $fileName = $uniqueId . '.' . $extension;
+
+        $dir = storage_path('uploads/profile_pictures');
+
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
+
+        $file->storeAs('uploads/profile_pictures', $fileName);
+
+        $requestData = $request->validated();
+        $requestData['profile_picture'] = 'uploads/profile_pictures/' . $fileName;
+
+        $result = $this->user->store($requestData);
 
         $response = [
             'message' => 'User successfully created',
