@@ -1,6 +1,6 @@
 ## Setting Up Locally
 
-To Setup this project on your local machine. The below step is with the assumption that [**Laravel Valet**](https://laravel.com/docs/9.x/valet/ 'Laravel Valet Documentation') and [**composer**](https://getcomposer.org/download/, 'Get Composer Download Documentation') are installed on your machine
+To Setup this project on your local machine. The below step is with the assumption that [**composer**](https://getcomposer.org/download/, 'Get Composer Download Documentation') are installed on your machine
 
 - Clone this repo using the below code:
 <pre>
@@ -16,4 +16,4 @@ _(Note: this will create a folder called _**laravel-repository-pattern**_)_
 - Run `php artisan migrate` to migrate tables to your db.
 
 ## Documentation link
-- The endpoints to test the service are provided in the [Postman Documentation]().
+- The endpoints to test the service are provided in the [Postman Documentation](https://documenter.getpostman.com/view/25225100/2s9YymFito).
