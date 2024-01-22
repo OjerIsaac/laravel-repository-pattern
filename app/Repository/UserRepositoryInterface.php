@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
-interface UserRepositoryInterface 
+interface UserRepositoryInterface
 {
-    public function store( $data= [] );
+    public function store($data);
+
+    public function exists($data);
 }

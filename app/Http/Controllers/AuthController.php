@@ -15,8 +15,20 @@ class AuthController extends Controller
     }
 
     public function store(RegisterRequest $request)
-    {   
-        //store  user
-        $this->user->store($request);
+    {
+        if ($this->user->exists($request->email)) {
+            $response = [
+                'message' => 'User with the provided email already exists.',
+            ];
+            return response()->json($response, 400);
+        }
+
+        $result = $this->user->store($request->validated());
+
+        $response = [
+            'message' => 'User successfully created',
+            'data' => $result
+        ];
+        return response()->json($response, 200);
     }
 }
