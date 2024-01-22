@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use App\Http\Helpers\EmailHelper;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Repository\UserRepositoryInterface;
 
@@ -45,8 +46,10 @@ class AuthController extends Controller
 
         $result = $this->user->store($requestData);
 
+        $rsp = EmailHelper::sendWelcomeEmail($request->email, $request->name);
+
         $response = [
-            'message' => 'User successfully created',
+            'message' => 'User successfully created ' .$rsp,
             'data' => $result
         ];
         return response()->json($response, 200);
