@@ -12,6 +12,7 @@ _(Note: this will create a folder called _**laravel-repository-pattern**_)_
 - Run `cd laravel-repository-pattern` to change the directory into project folder which was created in step one.
 - Run `composer install` to install all dependencies.
 - Run `cp .env.example .env` to clone the .env.example file as .env.
+- Modify your `.env` with your db and mail credentials.
 - Run `php artisan key:generate` to generate app key.
 - Run `php artisan migrate` to migrate tables to your db.
 
